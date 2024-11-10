@@ -157,7 +157,7 @@ function showQuestion() {
 			answer.images.forEach(imageUrl => {
 				const img = document.createElement('img')
 				img.src = imageUrl
-				img.alt = 'Actor/Actress Image'
+
 				img.classList.add('answer-image') // Для стилизации
 				imagesContainer.appendChild(img)
 			})
