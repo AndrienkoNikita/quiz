@@ -20,19 +20,57 @@ const questions = [
 	{
 		question: 'What is my favorite acctress?',
 		answers: [
-			{ text: 'Jennifer Lawrence and Zendaya', correct: false },
-			{ text: 'Eliza Taylor and Alycia Debnam-Carey', correct: false },
-			{ text: 'Zendaya and Emilia Clarke', correct: false },
-			{ text: 'Emilia Clarke and Alycia Debnam-Carey', correct: true },
+			{
+				text: 'Jennifer Lawrence and Zendaya',
+				correct: false,
+				images: ['../image/Jennifer Lawrence.png', '../image/Zendaya.jpg'],
+			},
+			{
+				text: 'Eliza Taylor and Alycia Debnam-Carey',
+				correct: false,
+				images: [
+					'../image/Eliza Teylor.png',
+					'../image/Alicia-Debnam_Carey.png',
+				],
+			},
+			{
+				text: 'Zendaya and Emilia Clarke',
+				correct: false,
+				images: ['../image/Zendaya.jpg', '../image/Emilia Clarke.png'],
+			},
+			{
+				text: 'Emilia Clarke and Alycia Debnam-Carey',
+				correct: true,
+				images: [
+					'../image/Emilia Clarke.png',
+					'../image/Alicia-Debnam_Carey.png',
+				],
+			},
 		],
 	},
 	{
 		question: 'What is my favorite actor?',
 		answers: [
-			{ text: 'Bob Morley and Brad Pitt', correct: true },
-			{ text: 'Tom Holland and Andrew Garfield', correct: false },
-			{ text: 'Brad Pitt and Jim Carrey', correct: false },
-			{ text: 'Kit Harington and Bob Morley', correct: false },
+			{
+				text: 'Bob Morley and Brad Pitt',
+				correct: true,
+				images: ['../image/Bob Morley.png', '../image/Brad Pitt.png'],
+			},
+			{
+				text: 'Tom Holland and Andrew Garfield',
+				correct: false,
+				images: ['../image/Tom Holland.png', '../image/Andrew Garfield.png'],
+			},
+			{
+				text: 'Brad Pitt and Jim Carrey',
+				correct: false,
+				images: ['../image/Brad Pitt.png', '../image/Jim Carrey.png'],
+			},
+			{
+				text: 'Kit Harington and Bob Morley',
+				correct: false,
+				images: ['../image/Kit Harington.png', '../image/Bob Morley.png'],
+			},
 		],
 	},
 	{
@@ -104,12 +142,35 @@ function showQuestion() {
 
 	currentQuestion.answers.forEach(answer => {
 		const button = document.createElement('button')
-		button.innerHTML = answer.text
 		button.classList.add('btn')
+
+		// Добавление текста ответа
+		const text = document.createElement('span')
+		text.innerHTML = answer.text
+		button.appendChild(text)
+
+		// Добавление изображений (если они есть) под текстом
+		if (answer.images && answer.images.length) {
+			const imagesContainer = document.createElement('div')
+			imagesContainer.classList.add('images-container')
+
+			answer.images.forEach(imageUrl => {
+				const img = document.createElement('img')
+				img.src = imageUrl
+				img.alt = 'Actor/Actress Image'
+				img.classList.add('answer-image') // Для стилизации
+				imagesContainer.appendChild(img)
+			})
+
+			button.appendChild(imagesContainer)
+		}
+
 		answerButton.appendChild(button)
+
 		if (answer.correct) {
 			button.dataset.correct = answer.correct
 		}
+
 		button.addEventListener('click', selectAnswer)
 	})
 }

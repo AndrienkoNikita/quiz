@@ -47,9 +47,10 @@ body {
 	border-radius: 5px;
 	padding: 10px;
 	border: 1px #333 solid;
-	text-align: left;
+	text-align: center;
 	cursor: pointer;
 	transition: all 0.3s;
+	font-size: 17px;
 }
 
 .btn:hover:not([disabled]) {
@@ -86,4 +87,14 @@ body {
 
 .incorrect {
 	background: #ff9393;
+}
+
+.answer-image {
+	width: 100px; /* Размер изображения */ /* Размер изображения */
+	margin-right: 10px; /* Отступ между изображением и текстом */ /* Выравнивание изображения по вертикали с текстом */
+}
+
+button {
+	display: block;
+	align-items: center;
 }
